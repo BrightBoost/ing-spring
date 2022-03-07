@@ -1,10 +1,13 @@
 package com.example.beansdemo;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.beansdemo.scopes.Liar;
+import com.example.beansdemo.scopes.Salary;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 
 // this annotation contains a lot of other annotations
 // amongst which: @Component (making it a bean)
@@ -13,16 +16,18 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class BeansDemoApplication {
 
-    @Autowired
-    private Example example;
-
     public static void main(String[] args) {
         ApplicationContext ac = SpringApplication.run(BeansDemoApplication.class, args);
         for (String bean : ac.getBeanDefinitionNames()) {
             System.out.println(bean);
         }
-    }
 
+        Liar l = (Liar) ac.getBean("liar");
+
+        for(int i = 0; i < 10; i++) {
+            System.out.println(l.getSalary().getNr());
+        }
+    }
 
     @Bean //of type String
     public String getStringBean() {
@@ -33,7 +38,7 @@ public class BeansDemoApplication {
     public String getStringBean2() {
         return "Bye";
     }
-//
+
 //    @Bean
 //    public Example getExample() {
 //        return new Example();

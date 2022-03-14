@@ -28,5 +28,12 @@ public class ExampleSendingParamsController {
         return "Hi " + example.getName() + " My favorite number is " + example.getNumber();
     }
 
+    // breaking the convention of saving something with post for the sake of the rest template example
+    @PostMapping("bodyparamobject")
+    public Example sayPersonalizedHiBody2(@RequestBody Example example) {
+       // return "Hi " + example.getName() + " My favorite number is " + example.getNumber();
+        return example;
+    }
+
 
 }

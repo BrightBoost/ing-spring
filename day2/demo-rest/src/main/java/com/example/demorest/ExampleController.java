@@ -1,26 +1,37 @@
 package com.example.demorest;
 
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("example")
 public class ExampleController {
 
-    @GetMapping( "hi")
-    public String sayHi() {
-        return "Hi!";
+    private ExampleService exampleService;
+
+    @Autowired
+    public ExampleController(ExampleService exampleService) {
+        this.exampleService = exampleService;
     }
 
-    @Async
-    @GetMapping("slowHi")
-    public String asyncHi() throws InterruptedException {
-        Thread.sleep(1000);
-        System.out.println("blabla");
-        return "hi sorry I was sleeping";
+    // get one
+    @GetMapping("{id}")
+    public Example getExample(@PathVariable long id) {
+        return exampleService.getExample(id);
+    }
+
+    // get all
+    @GetMapping
+    public List<Example> getExamples() {
+        return exampleService.getExamples();
+    }
+
+    // create
+    @PostMapping
+    public void createExample(@RequestBody Example example) {
+        exampleService.saveExample(example);
     }
 
 

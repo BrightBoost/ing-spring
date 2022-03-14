@@ -6,16 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Example {
+public class ReallyNow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private int number;
-
-    public long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;

@@ -10,10 +10,12 @@ import java.util.List;
 public class ExampleController {
 
     private ExampleService exampleService;
+    private ExampleTransactionService exampleTransactionService;
 
     @Autowired
-    public ExampleController(ExampleService exampleService) {
+    public ExampleController(ExampleService exampleService, ExampleTransactionService exampleTransactionService) {
         this.exampleService = exampleService;
+        this.exampleTransactionService = exampleTransactionService;
     }
 
     // get one
@@ -34,5 +36,15 @@ public class ExampleController {
         exampleService.saveExample(example);
     }
 
+    //update name
+    @PutMapping("{id}/{name}")
+    public void updateNameExample(@PathVariable long id, @PathVariable String name) {
+        exampleTransactionService.updateNameExample(id, name);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteExample(@PathVariable long id) throws Exception {
+        exampleTransactionService.deleteExample(id);
+    }
 
 }

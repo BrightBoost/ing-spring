@@ -32,7 +32,7 @@ public class ExampleSecurityAopController {
         return list;
     }
 
-    //@Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMIN")
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("hi-admin")
     public String sayHiAdmin() {

@@ -1,0 +1,6 @@
+CREATE TABLE PRODUCT
+(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR,
+    price INT
+);

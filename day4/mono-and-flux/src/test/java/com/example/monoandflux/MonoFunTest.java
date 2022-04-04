@@ -13,7 +13,7 @@ public class MonoFunTest {
     }
 
     @Test
-    public void HelloMonoWithSubscriber() {
+    public void helloMonoWithSubscriber() {
         Mono.just("B")
                 .log()
                 .subscribe(System.out::println,
@@ -22,7 +22,7 @@ public class MonoFunTest {
     }
 
     @Test
-    public void HelloMonoWithSubscriberError() {
+    public void helloMonoWithSubscriberError() {
         Mono.error(new IOException())
                 .log()
                 .doOnError(s -> System.out.println("Oh no 1! " + s))
@@ -32,12 +32,19 @@ public class MonoFunTest {
     }
 
     @Test
-    public void HelloMonoDoOnMethods() {
+    public void helloMonoDoOnMethods() {
         Mono.just("C")
                 .log()
                 .doOnSubscribe(s -> System.out.println("I've subscribed to: " + s))
                 .doOnRequest(r -> System.out.println("I've requested: " + r))
                 .subscribe(System.out::println);
+    }
+
+    @Test
+    public void helloMonoVoid() {
+        Mono.empty()
+                .log()
+                .subscribe();
     }
 
 

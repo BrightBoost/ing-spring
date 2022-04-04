@@ -1,9 +1,11 @@
 package com.example.reactiverestapi.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table
 public class Product {
+    @Id
     private Long id;
     private String name;
     private int price;
